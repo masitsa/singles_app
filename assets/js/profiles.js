@@ -51,6 +51,7 @@ function get_all_profiles()
 		
 		//remove preloader
 		$( "#loader-wrapper" ).addClass( "display_none" );
+		
 	});
 	/*$.ajax({
 		type:'POST',

@@ -1,6 +1,4 @@
-var base_url = 'http://mobile.nairobisingles.com/mobile/';
-
-/* Function to check for network connectivity */
+// JavaScript Document/* Function to check for network connectivity */
 
 function is_connected()
 {
@@ -21,7 +19,7 @@ var EmployeeService = function() {
     var url;
 
     this.initialize = function(serviceURL) {
-        url = serviceURL ? serviceURL : "http://mobile.nairobisingles.com/mobile/login/login_client";
+        url = serviceURL ? serviceURL : base_url+"login/register_user";
         var deferred = $.Deferred();
         deferred.resolve();
         return deferred.promise();
@@ -31,9 +29,9 @@ var EmployeeService = function() {
         return $.ajax({url: url + "/" + id});
     }
 
-    this.findByName = function(email, password) {
-		var request = url + "/" + email + "/" + password;
-        return $.ajax({url: request});
+    this.findByName = function(email, password, username, client_agree) {
+		var request = url;
+        return $.ajax({url: request, method:"post", data: {email: email, password: password, username: username, client_agree: client_agree}});
     }
 
 
@@ -43,6 +41,10 @@ var EmployeeService = function() {
 //log them in automatically
 $(document).ready(function(){
 	//automatic_login();
+	$( "#loader-wrapper" ).addClass( "display_none" );
+	var myScroll;
+	myScroll = new IScroll('#wrapper', { bounceEasing: 'elastic', bounceTime: 1200 });
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 });
 
 //automatic login
@@ -75,7 +77,7 @@ function automatic_login()
 }
 
 //Login client
-$(document).on("submit","form#signin-client",function(e)
+$(document).on("submit","form#signup-client",function(e)
 {
 	e.preventDefault();
 	$("#response").html('').fadeIn( "slow");
@@ -94,8 +96,10 @@ $(document).on("submit","form#signin-client",function(e)
 		//get form values
 		var email = $("input[name=client_email]").val();
 		var password = $("input[name=client_password]").val();
+		var username = $("input[name=client_username]").val();
+		var client_agree = $("input[name=client_agree]").val();
 		
-		service.findByName(email, password).done(function (employees) {
+		service.findByName(email, password ,username, client_agree).done(function (employees) {
 			var data = jQuery.parseJSON(employees);
 			
 			if(data.message == "success")
@@ -103,10 +107,10 @@ $(document).on("submit","form#signin-client",function(e)
 				//set local variables for future auto login
 				window.localStorage.setItem("client_email", email);
 				window.localStorage.setItem("client_password", password);
-				window.localStorage.setItem("client_username", data.client_username);
+				window.localStorage.setItem("client_username", username);
 				
 				//redirect to profiles page
-				window.location.href = 'pages/profiles.html';
+				window.location.href = 'my_profile.html';
 			}
 			else
 			{
