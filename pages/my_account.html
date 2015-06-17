@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+		<title>Nairobisingles</title>
+		<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/js/jasny/jasny-bootstrap.css">
+		<link rel="stylesheet" href="../assets/css/style_inner.css" type="text/css" media="screen" />
+        
+	</head>
+	<body>
+        <div class="navbar" role="navigation">
+        	<div class="row navbar-top">
+            	<div class="col-xs-2">
+                	<img src="../assets/img/logo.png" class="img-responsive center-align">
+                </div>
+            	<div class="col-xs-7">
+                	<h3 class="center-align">Nairobisingles</h3>
+                </div>
+            	<div class="col-xs-3">
+                	<h5 id="profile_username"></h5>
+                </div>
+            </div>
+        	<div class="footer row">
+            	<div class="col-xs-3 center-align">
+                	<a href="profiles.html" ><i class="glyphicon glyphicon-home"></i></a>
+                </div>
+                
+            	<div class="col-xs-3 center-align">
+                	<a href="messages.html" ><i class="glyphicon glyphicon-envelope"></i></a>
+                </div>
+                
+            	<div class="col-xs-3 center-align">
+                	<a href="my_profile.html" class="active" ><i class="glyphicon glyphicon-user"></i></a>
+                </div>
+                
+            	<div class="col-xs-3 center-align">
+                	<a href="likes.html" ><i class="glyphicon glyphicon-heart"></i></a>
+                </div>
+            </div>
+        </div>
+ 		
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+        
+        <div id="response"></div>
+                    
+        <div class="white-content">
+        	<div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="position:relative;">
+                    <li role="presentation" class="active"><a href="#about_me" aria-controls="about_me" role="tab" data-toggle="tab">About me</a></li>
+                    <li role="presentation"><a href="#subscription" id="subscription_tab" aria-controls="subscription" role="tab" data-toggle="tab">Subscription</a></li>
+                </ul>
+				
+                <div id="wrapper">
+					<div id="scroller">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="about_me">
+                            	<div id="profiles_form">
+                                    <form method="POST" action="mobile/login/update_user" id="update_client_profile" enctype="multipart/form-data">
+                                        <div class="form-group">	
+                                           <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="cursor:pointer;" id="profile_image">
+                                                    <img src="http://placehold.it/300x200&text=Upload+image" class="img-responsive">
+                                                </div>
+                                                <div>
+                                                    <span class="btn btn-file btn-primary"><span class="fileinput-new">Click here to upload image</span><span class="fileinput-exists">Change</span><input type="file" name="profile_image"></span>
+                                                    <a href="#" class="btn btn-success fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
+                                                <input type="text" name="client_username" class="form-control col-md-12" placeholder='Username' readonly>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                                <input type="text" name="client_email" id="client_email" class="form-control col-md-12" placeholder='Email' readonly>
+                                            </div> 
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <label> Age</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><span class="glyphicon glyphicon-calender" aria-hidden="true"></span></div>
+                                                <div class="col-xs-12 ">
+                                                    <input type="text" name="client_client_dob1" id="client_client_dob1" class="form-control col-md-12" placeholder='dd' >
+                                                </div>
+                                                <div class="col-xs-12 ">
+                                                    <input type="text" name="client_client_dob2" id="client_client_dob2" class="form-control col-md-12" placeholder='mm' >
+                                                </div>
+                                                <div class="col-xs-12 ">
+                                                    <input type="text" name="client_client_dob3" id="client_client_dob3" class="form-control col-md-12" placeholder='yyyy' >
+                                                </div>
+                                            </div> 
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <label> Describe yourself</label>
+                                            <div class="col-md-12">
+                                                <textarea rows="10"  name="client_about" id="client_about" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <select class="form-control col-md-12" id="gender_id" name="gender_id">
+                                                <option>-- I am a --</option>
+                                                <option value="1"> Man </option>
+                                                <option value="2"> Woman </option>
+                                            </select>
+                                        </div>
+                                       
+                                        <div class="form-group center-align">
+                                            Seeking a
+                                        </div>
+                                   
+                                        <div class="form-group">
+                                            <select class="form-control col-md-12" id="looking_for" name="client_looking_gender_id">
+                                                <option>-- Looking for a --</option>
+                                                <option value="1"> Man </option>
+                                                <option value="2"> Woman </option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control col-md-12" id="client_age_group_id" name="age_group_id">
+                                                <option>-- Aged--</option>
+                                                <option value="1"> 18 - 25 </option>
+                                                <option value="2"> 26 - 34 </option>
+                                                <option value="3"> 35 - 45 </option>
+                                                <option value="4"> 46 - 60 </option>
+                                                <option value="4"> Over 60 </option>
+                                            </select>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group center-align">
+                                            for a 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <select class="form-control col-md-12" id="client_encounter_id" name="encounter_id">
+                                                <option>-- Select an encounter--</option>
+                                                <option value="1"> Casual encounter</option>
+                                                <option value="2"> Love/Relationship/Friendship</option>
+                                                <option value="3"> Anything</option>
+                                            </select>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                           <div class="center-align">
+                                                <button type="submit" class="btn btn-lg btn-primary">Update profile</button>
+                                           </div>
+                                       </div>
+                                       
+                                    </form>
+								</div>
+							</div>
+							
+							<div role="tabpanel" class="tab-pane fade" id="subscription">
+								<div id="subscription_details"></div>
+                                <div id="purchase_credit"></div>
+								<h3 class="center-align">Purchase</h3>
+                                
+                                To purchase credits please do one of the following:
+                                <ol>
+                                	<li>Log into www.nairobisingles.com and purchase from your account</li>
+                                	<li>Purchase using our Paybill number 123456 using your username as your account name</li>
+                                </ol>
+								<!--<div class="row">
+									<form action="https://www.nairobisingles.com/credits" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
+										<input type="hidden" name="type" value="MERCHANT" />
+
+										<input type="hidden" name="credit_type_id" value="4" />
+
+										<input type="hidden" name="credit_type_amount" value="50" />
+
+										<input type="hidden" name="credit_type_credits" value="55" />
+
+										<input type="hidden" name="description" value="Purchase to receive 55 chatcredits" />
+										<div class="col-xs-12">
+											<div class="thumbnail">
+												<img src="http://placehold.it/300x200&text=Ksh 50" alt="Ksh+50" class="img-responsive">
+												<div class="caption">
+													<p>Purchase to receive 55 chatcredits</p>
+													<p class="center-align"><button type="submit" class="btn btn-primary">Subscribe</button></p>
+												</div>
+											</div>
+										</div>
+									</form>
+					
+									<form action="https://www.nairobisingles.com/credits" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
+										<input type="hidden" name="type" value="MERCHANT" />
+
+										<input type="hidden" name="credit_type_id" value="1" />
+
+										<input type="hidden" name="credit_type_amount" value="100" />
+
+										<input type="hidden" name="credit_type_credits" value="150" />
+
+										<input type="hidden" name="description" value="Purchase to receive 150 chatcredits" />
+										
+										<div class="col-xs-12">
+											<div class="thumbnail">
+												<img src="http://placehold.it/300x200&text=Ksh 100" alt="Ksh+100" class="img-responsive">
+												<div class="caption">
+													<p>Purchase to receive 150 chatcredits</p>
+													<p class="center-align"><button type="submit" class="btn btn-primary">Subscribe</button></p>
+												</div>
+											</div>
+										</div>
+									</form>
+									
+									<form action="https://www.nairobisingles.com/credits" method="post" accept-charset="utf-8" class="form-horizontal" role="form">
+										<input type="hidden" name="type" value="MERCHANT" />
+
+										<input type="hidden" name="credit_type_id" value="2" />
+
+										<input type="hidden" name="credit_type_amount" value="200" />
+
+										<input type="hidden" name="credit_type_credits" value="400" />
+
+										<input type="hidden" name="description" value="Purchase to receive 400 chatcredits" />
+										<div class="col-xs-12">
+											<div class="thumbnail">
+												<img src="http://placehold.it/300x200&text=Ksh 200" alt="Ksh+200" class="img-responsive">
+												<div class="caption">
+													<p>Purchase to receive 400 chatcredits</p>
+													<p class="center-align"><button type="submit" class="btn btn-primary">Subscribe</button></p>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>-->
+							
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		
+		<script src="../assets/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../assets/bootstrap/js/bootstrap.min.js"></script> 
+		
+		<script src="../assets/js/connection.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../assets/js/my_profile.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../assets/js/connection.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../assets/js/jasny/jasny-bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="cordova.js"></script>
+        <script type="text/javascript" src="../assets/iscroll/iscroll.js"></script>
+        
+	</body>
+</html>

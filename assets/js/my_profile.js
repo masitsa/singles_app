@@ -1,25 +1,49 @@
-// JavaScript Document/* Function to check for network connectivity */
+/* Camera listener */
+/*this.$el.on('click', '.change-pic-btn', this.changePicture);
 
-function is_connected()
-{
-	navigator.network.isReachable(base_url, function(status) {
-		var connectivity = (status.internetConnectionStatus || status.code || status);
-		if (connectivity === NetworkStatus.NOT_REACHABLE) {
-			return false;
-			//alert("No internet connection - we won't be able to show you any maps");
-		} else {
-			return true;
-			//alert("We can reach Google - get ready for some awesome maps!");
+this.changePicture = function(event) {
+  event.preventDefault();
+  if (!navigator.camera) {
+      alert("Camera API not supported", "Error");
+      return;
+  }
+  var options =   {   quality: 50,
+                      destinationType: Camera.DestinationType.DATA_URL,
+                      sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Album
+                      encodingType: 0     // 0=JPG 1=PNG
+                  };
+
+  navigator.camera.getPicture(
+      function(imgData) {
+          $('.media-object', this.$el).attr('src', "data:image/jpeg;base64,"+imgData);
+      },
+      function() {
+          alert('Error taking picture', 'Error');
+      },
+      options);
+
+  return false;
+};
+
+window.imagePicker.getPictures(
+	function(results) {
+		for (var i = 0; i < results.length; i++) {
+			console.log('Image URI: ' + results[i]);
 		}
-	});
-}
+	}, function (error) {
+		console.log('Error: ' + error);
+	}, {
+		maximumImagesCount: 10,
+		width: 800
+	}
+);*/
 
 var EmployeeService = function() {
 
     var url;
 
     this.initialize = function(serviceURL) {
-        url = serviceURL ? serviceURL : base_url+"login/register_user";
+        url = serviceURL ? serviceURL : base_url;
         var deferred = $.Deferred();
         deferred.resolve();
         return deferred.promise();
@@ -29,26 +53,45 @@ var EmployeeService = function() {
         return $.ajax({url: url + "/" + id});
     }
 
-    this.findByName = function(email, password, username, client_agree) {
-		var request = url;
-        return $.ajax({url: request, method:"post", data: {email: email, password: password, username: username, client_agree: client_agree}});
+    this.findByName = function() {
+		var request = url+"profile/get_client_details";
+        return $.ajax({url: request});
     }
 
+    this.update_client = function(form_data) {
+		var request = url+"profile/edit_profile";
+        return $.ajax({url: request, type: "POST", data: form_data});
+    }
 
+    this.get_subscription_details = function(form_data) {
+		var request = url+"subscription/subscribe";
+        return $.ajax({url: request});
+    }
+
+    this.purchase_credit = function(form_data) {
+		var request = url+"subscription/purchase_credit";
+        return $.ajax({url: request, type: "POST", data: form_data});
+    }
 }
 
 //on page load if the user has logged in previously,
 //log them in automatically
 $(document).ready(function(){
-	//automatic_login();
 	$( "#loader-wrapper" ).addClass( "display_none" );
+	
+	var email = window.localStorage.getItem("client_email");
+	var password = window.localStorage.getItem("client_password");
+	
+	get_client_details();
+	get_subscription_details();
+	
 	var myScroll;
 	myScroll = new IScroll('#wrapper', { bounceEasing: 'elastic', bounceTime: 1200 });
 	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 });
 
-//automatic login
-function automatic_login()
+//client details
+function get_client_details()
 {
 	var service = new EmployeeService();
 	service.initialize().done(function () {
@@ -56,74 +99,114 @@ function automatic_login()
 	});
 	
 	//get client's credentials
-	var email = window.localStorage.getItem("client_email");
-	var password = window.localStorage.getItem("client_password");
 	
-	service.findByName(email, password).done(function (employees) {
+	service.findByName().done(function (employees) {
 		var data = jQuery.parseJSON(employees);
 		
 		if(data.message == "success")
 		{
-			window.localStorage.setItem("client_username", data.client_username);
-			window.location.href = 'pages/profiles.html';
-		}
-		
-		else
-		{
-			$( "#login_form" ).addClass( "display_block" );
-			$( "#loader-wrapper" ).addClass( "display_none" );
+			window.localStorage.setItem("profile_image_location", data.profile_image_location);
+			window.localStorage.setItem("client_gender_id", data.gender_id);
+			window.localStorage.setItem("client_about", data.client_about);
+			window.localStorage.setItem("client_looking_gender_id", data.client_looking_gender_id);
+			window.localStorage.setItem("client_age_group_id", data.age_group_id);
+			window.localStorage.setItem("client_encounter_id", data.encounter_id);
+			window.localStorage.setItem("client_dob1", data.client_dob1);
+			window.localStorage.setItem("client_dob2", data.client_dob2);
+			window.localStorage.setItem("client_dob3", data.client_dob3);
+			
+			$("#client_email").val(window.localStorage.getItem("client_email"));
+			$("#client_username").val(window.localStorage.getItem("client_username"));
+			$("#client_dob1").val(window.localStorage.getItem("client_dob1"));
+			$("#client_dob2").val(window.localStorage.getItem("client_dob2"));
+			$("#client_dob3").val(window.localStorage.getItem("client_dob3"));
+			$("#client_about").val(window.localStorage.getItem("client_about"));
+			$("#profile_image").html('<img src="'+window.localStorage.getItem("profile_image_location")+'" class="img-responsive">');
+			$('#gender_id').val(window.localStorage.getItem("client_gender_id"));
+			$('#looking_for').val(window.localStorage.getItem("client_looking_gender_id"));
+			$('#client_age_group_id').val(window.localStorage.getItem("client_age_group_id"));
+			$('#client_encounter_id').val(window.localStorage.getItem("client_encounter_id"));
 		}
 	});
 }
 
-//Login client
-$(document).on("submit","form#signup-client",function(e)
+//subscription details
+function get_subscription_details()
 {
-	e.preventDefault();
-	$("#response").html('').fadeIn( "slow");
-	$( "#loader-wrapper" ).removeClass( "display_none" );
+	var subscription_details = window.localStorage.getItem("subscription_details");
 	
-	//check if there is a network connection
-	var connection = true;//is_connected();
-	
-	if(connection === true)
+	if(subscription_details == null)
 	{
 		var service = new EmployeeService();
 		service.initialize().done(function () {
 			console.log("Service initialized");
 		});
 		
-		//get form values
-		var email = $("input[name=client_email]").val();
-		var password = $("input[name=client_password]").val();
-		var username = $("input[name=client_username]").val();
-		var client_agree = $("input[name=client_agree]").val();
+		//get client's credentials
 		
-		service.findByName(email, password ,username, client_agree).done(function (employees) {
+		service.get_subscription_details().done(function (employees) {
 			var data = jQuery.parseJSON(employees);
-			
-			if(data.message == "success")
-			{
-				//set local variables for future auto login
-				window.localStorage.setItem("client_email", email);
-				window.localStorage.setItem("client_password", password);
-				window.localStorage.setItem("client_username", username);
-				
-				//redirect to profiles page
-				window.location.href = 'my_profile.html';
-			}
-			else
-			{
-				$( "#loader-wrapper" ).addClass( "display_none" );
-				$("#response").html('<div class="alert alert-danger center-align">'+data.result+'</div>').fadeIn( "slow");
-			}
-        });
+			//alert(data.content);
+			subscription_details = window.localStorage.setItem("subscription_details", data.content);
+		});
 	}
 	
-	else
-	{
-		$("#response").html('<div class="alert alert-danger center-align">'+"No internet connection - please check your internet connection then try again"+'</div>').fadeIn( "slow");
+	$("#subscription_details").html(subscription_details);
+}
+
+//Update client
+$(document).on("submit","form#update_client_profile",function(e)
+{
+	e.preventDefault();
+	$("#response").html('').fadeIn( "slow");
+	$( "#loader-wrapper" ).removeClass( "display_none" );
+	
+	var service = new EmployeeService();
+	service.initialize().done(function () {
+		console.log("Service initialized");
+	});
+	
+	//get the form data
+	var formData = new FormData(this);
+	
+	service.update_client(formData).done(function (employees) {
+		var data = jQuery.parseJSON(employees);
+		
+		if(data.response == "success")
+		{
+			//update client details
+			get_client_details();
+		}
+		else
+		{
+			$( "#loader-wrapper" ).addClass( "display_none" );
+			$("#response").html('<div class="alert alert-danger center-align">'+data.message+'</div>').fadeIn( "slow");
+		}
+	});
+	
+	return false;
+});
+
+//Subscribe client
+$(document).on("submit","#subscription_details form",function(e)
+{
+	e.preventDefault();
+	$( "#loader-wrapper" ).removeClass( "display_none" );
+	
+	var service = new EmployeeService();
+	service.initialize().done(function () {
+		console.log("Service initialized");
+	});
+	
+	//get the form data
+	var formData = new FormData(this);
+	
+	service.purchase_credit(formData).done(function (employees) {
+		var data = jQuery.parseJSON(employees);
+		
 		$( "#loader-wrapper" ).addClass( "display_none" );
-	}
+		$("#purchase_credit").html(data.content).fadeIn( "slow");
+	});
+	
 	return false;
 });

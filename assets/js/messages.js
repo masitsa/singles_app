@@ -1,10 +1,9 @@
-var base_url = 'https://www.nairobisingles.com/';
 var EmployeeService = function() {
 
     var url;
 
     this.initialize = function(serviceURL) {
-        url = serviceURL ? serviceURL : "http://mobile.nairobisingles.com/mobile/";
+        url = serviceURL ? serviceURL : base_url;
         var deferred = $.Deferred();
         deferred.resolve();
         return deferred.promise();

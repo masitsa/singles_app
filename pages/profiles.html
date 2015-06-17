@@ -11,6 +11,7 @@
 		
 		<script type="text/javascript" src="../assets/iscroll/iscroll.js"></script>
 		
+		<script src="../assets/js/connection.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../assets/js/profiles.js" type="text/javascript" charset="utf-8"></script>
         
 	</head>
@@ -46,29 +47,252 @@
             </div>
         </div>
  		
-        <div id="loader-wrapper">
-            <div id="loader"></div>
-        </div>
                     
         <div class="white-content">
         	<div id="wrapper">
                 <div id="scroller">
-                    <ul class="profiles">
-                        <!--<li>
-                            <div class="avatar">
-                                <img src="../assets/img/avatar.png" class="img-responsive img-circle">
-                            </div>
-                            <div class="details">
-                                <div class="profile-name">John Doe</div>
-                                <div class="profile-details">24yr old . Male . Westlands</div>
-                                
-                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
-                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
-                            </div>
-                        </li>
-                        
-                        <a class="btn btn-load-more">Load more</a>-->
-                    </ul>
+                    <ul class="profiles" id="display_profiles">
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="avatar">
+                                                <img src="assets/img/avatar.png" class="img-responsive img-circle">
+                                            </div>
+                                            <div class="details">
+                                                <div class="profile-name">John Doe</div>
+                                                <div class="profile-details">24yr old . Male . Westlands</div>
+                                                
+                                                <a href="#" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-heart"></i></a>
+                                                <a href="#" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-envelope"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
                 </div>
         	</div>
         </div>

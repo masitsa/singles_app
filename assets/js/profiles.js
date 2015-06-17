@@ -1,11 +1,9 @@
-var base_url = 'https://www.nairobisingles.com/';
-
 var EmployeeService = function() {
 
     var url;
 
     this.initialize = function(serviceURL) {
-        url = serviceURL ? serviceURL : "http://mobile.nairobisingles.com/mobile/account/get_all_profiles";
+        url = serviceURL ? serviceURL : base_url+"account/get_all_profiles";
         var deferred = $.Deferred();
         deferred.resolve();
         return deferred.promise();
@@ -23,7 +21,10 @@ var EmployeeService = function() {
 
 $(document).ready(function(){
 	display_username();
-	get_all_profiles();
+	//get_all_profiles();
+	var myScroll;
+		myScroll = new IScroll('#wrapper', { bounceEasing: 'elastic', bounceTime: 1200 });
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 });
 
 function display_username()
