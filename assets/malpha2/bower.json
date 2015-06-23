@@ -1,0 +1,29 @@
+{
+  "name": "mAlpha2",
+  "version": "1.0.0",
+  "authors": [
+    "Krzysiek Furtak <krzysztof.furtak@gmail.com>"
+  ],
+  "description": "Mobile template",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "mobile",
+    "template"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Tweetie": "~2.4.3",
+    "framework7": "~1.0.6",
+    "jquery": "~2.1.4",
+    "swiper": "~3.0.7"
+  }
+}

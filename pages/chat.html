@@ -1,0 +1,47 @@
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left">
+            <a href="#" class="link icon-only open-panel">
+                <span class="kkicon icon-menu"></span>
+            </a>
+        </div>
+        <div class="center sliding" id="message_receiver"></div>
+        <div class="right">
+            <a href="#" class="link icon-only open-panel" data-panel="right">
+                <span class="kkicon icon-user"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="view another-view">
+    <!-- Pages -->
+    <div class="pages">
+        <div class="page navbar-fixed toolbar-fixed" data-page="chat">
+            <div class="toolbar messagebar">
+                <div class="toolbar-inner">
+					<form method="POST" action="mobile/messages/message_profile" id="send-message">
+						<input type="hidden" id="ajax_receiver" name="receiver_id" value="" />
+						<input type="hidden" id="prev_message_count" value="" />
+						<input type="hidden" id="web_name" name="web_name" value="" />
+						
+						<div class="row">
+							<div class="col-80">
+								<textarea placeholder="Message" name="client_message_details" id="instant_message2"></textarea>
+							</div>
+							<div class="col-20">
+								<button type="submit" class="button button-primary ">Send</button>
+							</div>
+						</div>
+					</form>
+                </div>
+            </div>
+
+            <div class="page-content messages-content">
+                <div class="messages" id="single_message">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
